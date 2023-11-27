@@ -238,4 +238,6 @@
 # webbrowser.open(url + user_term)
 
 
-test = "stringa"
+test = "stringa"   
+
+ciao = 1
