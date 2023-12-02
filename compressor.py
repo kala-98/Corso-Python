@@ -22,3 +22,5 @@ window = sg.Window("File Zipper", layout = [firstRow,
 
 window.read()
 window.close()
+
+print("test")
