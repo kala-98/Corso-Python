@@ -2,3 +2,6 @@ clean
 shower
 read a book
 read a book
+read a book
+add
+test
