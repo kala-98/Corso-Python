@@ -5,15 +5,13 @@ def get_todo(list_todos=FILEPATH):
         todos = file.readlines()
     return todos
 
-def write_todo(list_todos=FILEPATH, todo):
+def write_todo(todo, list_todos=FILEPATH):
     with open(list_todos, "r") as file:
         todos = file.readlines()
     todos.append(todo + "\n")
 
-    with open(list_todos, "w"): as file:
-        todos.writelines(todos)
-
-    return todos
+    with open(list_todos, "w") as file:
+        todos = file.writelines(todos)
 
 
 

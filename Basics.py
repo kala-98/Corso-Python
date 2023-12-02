@@ -238,5 +238,14 @@
 # webbrowser.open(url + user_term)
 
 
+import functions 
 
-gf
+contenuto = functions.get_todo()
+print(contenuto)
+
+
+new_task = "read a book"
+new_contenuto = functions.write_todo(new_task)
+
+contenuto = functions.get_todo()
+print(contenuto)
