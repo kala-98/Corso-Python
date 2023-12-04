@@ -1,0 +1,32 @@
+
+import PySimpleGUI as sg
+
+font_style = ("Ubuntu", 12)
+label1 = sg.Text("Enter feet: ")
+input1 = sg.Input(key = "feet", size = (20, 10))
+
+label2 = sg.Text("Enter inches: ")
+input2 = sg.Input(key = "inches", size = (20, 10))
+
+button = sg.Button("Convert")
+result = sg.Text(key = "output")
+
+layout = [[label1, input1], [label2, input2], [button, result]]
+
+window = sg.Window("Convertor", 
+                   layout = layout, 
+                   font = font_style)
+
+while True:
+    event, values = window.read()
+
+    feet = float(values["feet"])
+    inches = float(values["inches"])
+
+    meters = round((feet * 0.3048) + (inches * 0.0254), 2)
+    window["output"].update(value = f"The result in meters is {meters}m")
+
+    if event == sg.WIN_CLOSED:
+        break 
+
+window.close()

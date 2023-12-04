@@ -36,7 +36,7 @@ while True:
     destinationPath = values["destination"] 
     nameZipFile = values["filename"]
     zc.make_archive(filepaths, destinationPath, nameZipFile)
-    window["output"].update(values = "Compression completed")
+    window["output"].update(value = "Compression completed")
 
     if event == sg.WIN_CLOSED:
         break
