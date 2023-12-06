@@ -2,7 +2,7 @@
 import PySimpleGUI as sg
 import functions as fn
 from datetime import datetime
-
+# si possono aggiungere anche le immagini (per esempio nei bottoni con image_source="path.png")
 sg.theme("Topanga")
 
 actual_date = datetime.now()
@@ -15,8 +15,8 @@ add_button = sg.Button("Add")
 list_box = sg.Listbox(values=fn.get_todo(), key="todos", 
                     enable_events=True, size=[45, 10])
 edit_button = sg.Button("Edit")
-complete_button = sg.Button("Complete")
-exit_button = sg.Button("Exit")
+complete_button = sg.Button("Complete", mouseover_colors="green")
+exit_button = sg.Button("Exit", mouseover_colors="red")
 output_label = sg.Text(key="output", text_color = "red")
 
 window = sg.Window("To-do App", 
