@@ -2,6 +2,13 @@
 import PySimpleGUI as sg
 import functions as fn
 from datetime import datetime
+import os
+
+# verifico se il file esiste: se non esiste vado a crearlo (altrimenti l'app mi darebbe errore)
+if not os.path.exists("todos.txt"):
+    with open("todos.txt", "w") as file:
+        pass
+
 # si possono aggiungere anche le immagini (per esempio nei bottoni con image_source="path.png")
 sg.theme("Topanga")
 
