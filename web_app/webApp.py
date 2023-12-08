@@ -2,20 +2,34 @@ import streamlit as st
 import sys
 import os
 
+
+    
+
 # dico a python di considerare anche la cartella padre per recuperare eventuali moduli
-sys.path.append('..')
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import functions
+
+todos = functions.get_todo()
+def add_todo():
+    todo = st.session_state["new_todo"] #session_state restituisce una sorta di dizionario
+    todos.append(todo + "\n")
+    functions.write_todo(todos)
 
 st.title("Todo App")
 st.subheader("My todo app")
 st.write("This app is to increase your productivity")
 
-todos = functions.get_todo()
-unique_value = 0
-
 # recupero la lista
-for item in todos:
-    unique_value += 1
-    st.checkbox(item, key=f"todo{unique_value}")
+for index, item in enumerate(todos):
+    checkbox = st.checkbox(item, key=item)
+    if checkbox:
+        todos.pop(index)
+        functions.write_todo(todos)
+        del st.session_state[item]
+        st.rerun()
 
-st.text_input(label="", placeholder="Enter new todo")
+st.text_input(label="Add new todo", placeholder="Enter new todo", 
+              on_change=add_todo, key="new_todo")
+
+
+st.session_state
