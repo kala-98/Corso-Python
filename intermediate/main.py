@@ -1,10 +1,16 @@
 import streamlit as st 
 
+st.set_page_config(layout="wide")
+
 st.markdown(
     """
     <style>
     .appview-container {
     background-color:#808080;
+    }
+    img {
+    width: 600px;
+    height: 500px;
     }
     </style>
     """,
@@ -23,4 +29,7 @@ with col2:
     eager to learn some skills about 
     coding in Python
     """
-    st.write(content)
+    st.info(content)
+
+content2 = "Below you can find some apps i have built in Python. Feel free to contact me!"
+st.write(content2)
