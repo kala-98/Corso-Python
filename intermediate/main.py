@@ -1,4 +1,5 @@
 import streamlit as st 
+import functions as fn
 
 st.set_page_config(layout="wide")
 
@@ -33,3 +34,20 @@ with col2:
 
 content2 = "Below you can find some apps i have built in Python. Feel free to contact me!"
 st.write(content2)
+
+col3, col4 = st.columns(2)
+content3 = fn.get_dataCsv(";")
+
+with col3:
+    
+    for i in range(1, len(content3), 2):
+        st.title(content3[i][0])
+        st.subheader(content3[i][1])
+        st.image("images/" + content3[i][3], use_column_width="auto")
+
+with col4:
+
+    for i in range(2, len(content3), 2):
+        st.title(content3[i][0])
+        st.subheader(content3[i][1])
+        st.image("images/" + content3[i][3], use_column_width="auto")
