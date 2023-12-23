@@ -4,15 +4,15 @@ import functions as fn
 st.set_page_config(layout="wide")
 
 st.markdown(
-    f"""
+    """
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-    html, body, [class*="css"]  {{
+    html, body, [class*="css"]  {
     font-family: 'Ubuntu', sans-serif !important;
-    }}
-    .appview-container {{
+    }
+    .appview-container {
     background-color:#808080;
-    }}
+    }
     img {
     width: 600px;
     height: 500px;
