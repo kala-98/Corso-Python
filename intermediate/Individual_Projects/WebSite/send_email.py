@@ -6,7 +6,7 @@ def send_mail(message, user_email, topic):
     host = "smtp.gmail.com"
     port = 465
     username = "jersew98@gmail.com"
-    password = os.getenv("PASSWORD")
+    password = os.getenv("PASSWORD") # recuperiamo la password attraverso la variabile d'ambiente che sarà accessibile solo dal nostro pc. Questo per evitare la proliferazione di informazioni sensibili
     receiver = "jersew98@gmail.com"
 
     context = ssl.create_default_context()
