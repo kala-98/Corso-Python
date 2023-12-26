@@ -20,6 +20,6 @@ def get_dataCsv(delimiter_arg, filepath = FILEPATH):
     return lista
 
 
-# if __name__ == "__main__":
-#     print("Hello")
+if __name__ == "__main__":
+    print("Hello")
 
