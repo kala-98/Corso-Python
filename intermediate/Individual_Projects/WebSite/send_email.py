@@ -1,7 +1,7 @@
 import smtplib, ssl # mail library that creates session
 
 
-def send_mail(message, user_email):
+def send_mail(message, user_email, topic):
     host = "smtp.gmail.com"
     port = 465
     username = "jersew98@gmail.com"
@@ -15,6 +15,7 @@ def send_mail(message, user_email):
 Subject: new email from {user_email}
 
 From: {user_email} 
+Topic: {topic}
 {message}
 """
 
