@@ -1,5 +1,6 @@
 import streamlit as st
 from send_email import send_mail
+import time
 
 #st.set_page_config(layout="wide")
 
@@ -24,3 +25,5 @@ with st.form(key = "email_form"):
     if button:
         send_mail(message, user_email)
         st.info("Your email has been sent successfully")
+        time.sleep(5)
+        st.rerun()
