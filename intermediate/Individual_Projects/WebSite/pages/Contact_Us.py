@@ -1,6 +1,5 @@
 import streamlit as st
 from send_email import send_mail
-import functions2
 import time
 
 #st.set_page_config(layout="wide")
