@@ -32,8 +32,9 @@ for index, row in df.iterrows():
     border_width = text_width + 5
 
     pdf.cell(w = border_width, h = 12, txt = topic, align = "C", ln = 1, border = 1)
+
     # x1 e y1 definiscono il punto d'inizio della linea, x2 e y2 la fine
     # a4's paper width is 210
-    pdf.line(10, 17, 200, 17)
+    pdf.line(x1 = 10, y1 = 25, x2 = 200, y2 = 25)
 
 pdf.output("output.pdf")
