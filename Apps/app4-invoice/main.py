@@ -5,10 +5,9 @@ from datetime import date
 
 # recupero tutti i file che corrispondono al pattern che ho definito
 filepaths = glob.glob("invoices/*.xlsx")
-lista = []
 
 for filepath in filepaths:
-    
+    lista = []
     df = pd.read_excel(filepath, sheet_name = "Sheet 1")
     total_price = 0
     # creazione del pdf per ogni file
@@ -74,8 +73,11 @@ for filepath in filepaths:
     pdf.ln(12)
 
     pdf.cell(w = 12, h = 12, txt = "The total amount is: " + str(total_price) + "€", align = "L", ln = 1, border = 0)
-    
+
     total_price = 0
-    lista = []
+
+    #pdf.ln(30)
+
+    pdf.image("images/logo.png", x = 120, w = 50, h = 80)
 
     pdf.output("Invoice_" + filepath.split("\\")[1][:-5] + '.pdf')
