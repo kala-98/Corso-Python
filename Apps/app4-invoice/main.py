@@ -2,24 +2,30 @@ import pandas as pd
 import glob
 from fpdf import FPDF
 from datetime import date
+from pathlib import Path
 
 # recupero tutti i file che corrispondono al pattern che ho definito
 filepaths = glob.glob("invoices/*.xlsx")
 
 for filepath in filepaths:
     lista = []
-    df = pd.read_excel(filepath, sheet_name = "Sheet 1")
     total_price = 0
+    df = pd.read_excel(filepath, sheet_name = "Sheet 1")
+    
     # creazione del pdf per ogni file
     pdf = FPDF(orientation = "P", unit = "mm", format = "A4")
     pdf.set_auto_page_break(auto = False, margin = 0)
     pdf.add_page()
     pdf.add_font('Ubuntu', "", 'Ubuntu-R.ttf', uni=True)
+    pdf.add_font('Ubuntu-Bold', "", 'Ubuntu-Bold.ttf', uni=True)
     pdf.set_font('Ubuntu', size = 14)
     pdf.set_text_color(0, 0, 0) #rgb
 
-    invoiceNumber = filepath.split("\\")[1].split("-")[0]
-    
+    # recupero solo il nome del file dal path
+    nameFile = Path(filepath).stem 
+    # recupero il numero della fattura
+    invoiceNumber = nameFile.split("-")[0]
+    # recupero la data odierna (nel formato che mi interessa)
     actualDate = date.today()
     formattedDate = actualDate.strftime("%d-%m-%Y")
 
@@ -28,6 +34,7 @@ for filepath in filepaths:
     pdf.ln(4)
 
     # header 
+    pdf.set_font('Ubuntu-Bold', size = 14)
     cols_header = df.columns.ravel()
     for col_header in cols_header:
         
@@ -48,6 +55,7 @@ for filepath in filepaths:
     pdf.ln(12)
 
     # data
+    pdf.set_font('Ubuntu', size = 14)
     for index, row in df.iterrows():
         for index, col_name in enumerate(df.columns):
             if lista[index] != lista[-1]:
@@ -68,16 +76,13 @@ for filepath in filepaths:
         
     pdf.cell(w = lista[-1], h = 12, txt = str(total_price), align = "L", ln = 1, border = 1)
 
-    
 
     pdf.ln(12)
 
     pdf.cell(w = 12, h = 12, txt = "The total amount is: " + str(total_price) + "€", align = "L", ln = 1, border = 0)
 
-    total_price = 0
-
     #pdf.ln(30)
 
-    pdf.image("images/logo.png", x = 120, w = 50, h = 80)
+    #pdf.image("images/logo.png", x = 120, w = 65, h = 80)
 
-    pdf.output("Invoice_" + filepath.split("\\")[1][:-5] + '.pdf')
+    pdf.output("Invoice_" + nameFile + '.pdf')
