@@ -1,0 +1,2 @@
+# What is this Project?
+This project covers the API's basis and how to make requests with them. 1st project will include a request to an API news website in order to send to our mail the content we want
