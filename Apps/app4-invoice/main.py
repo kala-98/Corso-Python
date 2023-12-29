@@ -53,14 +53,38 @@ for filepath in filepaths:
         pdf.cell(w = border_width, h = 12, txt = col_header, align = "C", ln = 0, border = 1)       
   
     pdf.ln(12)
-
+    
     # data
     pdf.set_font('Ubuntu', size = 14)
     for index, row in df.iterrows():
         for index, col_name in enumerate(df.columns):
-            if lista[index] != lista[-1]:
+
+            lunghezza_colonna = pdf.get_string_width(str(row[col_name]))
+
+            # gestione nel caso la lunghezza del testo sia minore del doppio del testo
+            if lunghezza_colonna > lista[index] and lunghezza_colonna <= lista[index] * 2:
+
+                pdf.multi_cell(w = lista[index], h = 6, txt = str(row[col_name]), align = "L", border = 1)
+                pdf.set_y(pdf.get_y() - 12)
+                nuova_coordinata_x = pdf.get_x() + 104.39 
+                pdf.set_x(nuova_coordinata_x)
+
+            # lunghezza minore al triplo del testo
+            elif lunghezza_colonna > lista[index] and lunghezza_colonna <= lista[index] * 3:
+
+                pdf.set_font('Ubuntu', size = 12)
+                pdf.multi_cell(w = lista[index], h = 4, txt = str(row[col_name]), align = "L", border = 1)
+                pdf.set_y(pdf.get_y() - 12)
+                nuova_coordinata_x = pdf.get_x() + 104.39 
+                pdf.set_x(nuova_coordinata_x)
+
+            elif lista[index] != lista[-1]:
+
+                pdf.set_font('Ubuntu', size = 14)
                 pdf.cell(w = lista[index], h=12, txt=str(row[col_name]), align="L", ln=0, border=1)
             else:
+
+                pdf.set_font('Ubuntu', size = 14)
                 pdf.cell(w = lista[index], h=12, txt=str(row[col_name]), align="L", ln=1, border=1)
 
         # pdf.cell(w = lista[0], h = 12, txt = str(row["product_id"]), align = "L", ln = 0, border = 1)
@@ -76,13 +100,12 @@ for filepath in filepaths:
         
     pdf.cell(w = lista[-1], h = 12, txt = str(total_price), align = "L", ln = 1, border = 1)
 
-
     pdf.ln(12)
 
     pdf.cell(w = 12, h = 12, txt = "The total amount is: " + str(total_price) + "€", align = "L", ln = 1, border = 0)
 
     #pdf.ln(30)
 
-    #pdf.image("images/logo.png", x = 120, w = 65, h = 80)
+    pdf.image("images/logo.png", x = 120, w = 65, h = 80)
 
     pdf.output("Invoice_" + nameFile + '.pdf')
