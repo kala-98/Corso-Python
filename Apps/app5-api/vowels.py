@@ -1,7 +1,7 @@
 
 def calcola_vocali(nome):
     vocali = "aeiou"
-    booleano = 0
+    verifica = 0
     dizionario = {}
     dizionarioOrdinato = {}
     lista = []
@@ -9,13 +9,13 @@ def calcola_vocali(nome):
 
     for letter in nome.lower():
         if letter in vocali:
-            booleano = 1
+            verifica = 1
             if letter in dizionario:
                 dizionario[letter] += 1
             else:
                 dizionario[letter] = 1
     
-    if booleano == 1:
+    if verifica == 1:
         for i in dizionario.values():
             somma_vocali += i
 
@@ -31,4 +31,4 @@ def calcola_vocali(nome):
     else:
         print("Il nome che hai inserito non presenta vocali")
 
-calcola_vocali("Giaa")
+calcola_vocali("Adriano")
