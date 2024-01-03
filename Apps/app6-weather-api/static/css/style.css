@@ -1,0 +1,39 @@
+body {
+    font-family: Ubuntu;
+}
+
+p {
+    margin: 0px;
+    padding: 10px;
+    border: black 2px solid;
+    float: left;
+    border-radius: 50px;
+    /* display: inline-block; */
+}
+
+.second-paragraph {
+    clear: left;
+    margin-top: 10px;
+}
+
+.word {
+    clear: left;
+    margin-top: 30px;
+    padding-top: 15px;
+}
+
+#check {
+    background-color: green;
+    font-family: Ubuntu;
+    color: white;
+    border-radius: 10px;
+}
+
+#check:hover {
+    cursor: pointer;
+    background-color: greenyellow;
+}
+
+a {
+    text-decoration: none;
+}
