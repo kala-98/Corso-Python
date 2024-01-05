@@ -22,7 +22,33 @@ p {
     padding-top: 15px;
 }
 
+.word2 {
+    clear: left;
+    margin-top: 20px;
+}
+
+.input-group {
+    clear: left;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Distanza tra i gruppi di input */
+}
+
+.input-group label {
+    width: 245px; /* Larghezza fissa per tutte le etichette */
+    margin-right: 10px; /* Spazio tra l'etichetta e l'input di testo */
+}
+
+
+
+
+/* #station {
+
+} */
+
 #check {
+    margin-left: 10px;
     background-color: green;
     font-family: Ubuntu;
     color: white;

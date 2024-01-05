@@ -17,6 +17,27 @@
         <div>
             <p class="second-paragraph"> URL example: http://127.0.0.1:5001/api/v1/10/19881025  </p>
         </div>
-        <script src="" async defer></script>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="input-group">
+            <label> Station: </label>
+            <input type="text" id="station">
+        </div>
+        <div class="input-group">
+            <label> Date (format: YYYY-MM-DD): </label>
+            <input type="text" id="date"> 
+            <input id="check" type="button" value="Check" onclick="redirectToApi()">
+        </div>
+        <script>
+            function redirectToApi() {
+                let station = document.getElementById("station").value
+                let date = document.getElementById("date").value
+                date = date.replaceAll("-", "")
+                window.location.href = "http://127.0.0.1:5001/api/v1/" + station + "/" + date
+            }
+        </script>
     </body>
 </html>
