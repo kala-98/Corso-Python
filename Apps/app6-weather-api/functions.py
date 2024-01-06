@@ -3,7 +3,8 @@ import pandas as pd
 import numpy as np
 
 PATH = "data_small/"
-def read_file_csv(station, date, filepath = PATH):
+def read_file_csv(station, date = "", filepath = PATH):
+    
     file_tg = ""
     #lista  = os.listdir(PATH)
     #fileName = [file for file in lista if file.endswith(f"{str(station)}.txt")]
@@ -16,6 +17,7 @@ def read_file_csv(station, date, filepath = PATH):
         file_tg = str(station)
     fileName = f"TG_STAID{file_tg}.txt"   
 
+    
     with open(PATH + fileName, "r") as file:
         df = pd.read_csv(file, skiprows=20, parse_dates = ["    DATE"])
 
@@ -24,16 +26,27 @@ def read_file_csv(station, date, filepath = PATH):
         # normalizzo i dati
         df["TG"] = df["TG0"] / 10
 
-        result = df.loc[df["    DATE"] == date]["TG"]
-        if result.dropna().empty:
-            result = None  
-            return "There are no information available for that date, sorry"
+        if date != "":
+            result = df.loc[df["    DATE"] == date]["TG"]
+            if result.dropna().empty:
+                result = None  
+                return "There are no information available for that date, sorry"
+            else:
+                result = result.squeeze()
+                return result
         else:
-            result = result.squeeze()
+            lista_date = []
+            lista_temperature = df["TG"].tolist()
+            lista_dateRaw = df["    DATE"].tolist()
+
+            for element in lista_dateRaw:
+                element = str(element)
+                lista_date.append(element)
+
+            # unisco le 2 liste
+            result = list(zip(lista_date, lista_temperature))    
             return result
             
 if __name__ == "__main__":
     print("Ok")
 
-                
-            

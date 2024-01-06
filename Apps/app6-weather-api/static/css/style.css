@@ -2,7 +2,7 @@ body {
     font-family: Ubuntu;
 }
 
-p {
+.template {
     margin: 0px;
     padding: 10px;
     border: black 2px solid;
@@ -40,12 +40,19 @@ p {
     margin-right: 10px; /* Spazio tra l'etichetta e l'input di testo */
 }
 
+.table-class {
+    border:1 px solid gray;
+    border-collapse: collapse;
+    background-color: blanchedalmond;
+    text-align: center;
+}
 
+.table-class th {
+    text-align: center;
+    
+    padding: 10px;
+}
 
-
-/* #station {
-
-} */
 
 #check {
     margin-left: 10px;
