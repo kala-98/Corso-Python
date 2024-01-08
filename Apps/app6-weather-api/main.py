@@ -10,11 +10,9 @@ app = Flask(__name__, static_url_path='/static')
 
 # applying route method to the object app
 # make sure to add the html pages inside the "templates" folder 
-# the images has to be in a folder called "static"
+# the images and css has to be in a folder called "static"
 # and render them through the render_template function
 path = "data_small/"
-lista = os.listdir(path)
-lista_file = [file for file in lista if file.startswith("TG_")]
 
 # retrieving the information from stations which will be formatted into html table
 stations = pd.read_csv(path + "stations.txt", skiprows = 17)
