@@ -33,6 +33,6 @@ try:
             st.subheader(f"{option} for the next {str(days) + " day in " if days == 1 else str(days) + " days in "} {place}")
             st.image(image_path, width = 115)
 
-except:
+except KeyError:
     st.write('<span style="color:red; font-size:30px">Please insert a valid city </span>', unsafe_allow_html=True)
 
