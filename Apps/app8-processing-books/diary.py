@@ -2,7 +2,7 @@ import streamlit as st
 import plotly.express as px
 import glob 
 from nltk.sentiment import SentimentIntensityAnalyzer
-from datetime import datetime
+
 
 lista_filePath = glob.glob("diary/*.txt")
 
