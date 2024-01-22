@@ -2,6 +2,7 @@ import streamlit as st
 import plotly.express as px
 import glob 
 from nltk.sentiment import SentimentIntensityAnalyzer
+from threading import Thread
 
 
 lista_filePath = glob.glob("diary/*.txt")
@@ -16,9 +17,9 @@ analyzer = SentimentIntensityAnalyzer()
 for filePath in lista_filePath:
     with open(filePath, "r") as file:
         content = file.read()
-        scores = analyzer.polarity_scores(content)
-        list_pos.append(scores["pos"])
-        list_neg.append(scores["neg"])
+    scores = analyzer.polarity_scores(content)
+    list_pos.append(scores["pos"])
+    list_neg.append(scores["neg"])
 
 st.title("Diary Tone")
 st.subheader("Positivity")
