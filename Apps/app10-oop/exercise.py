@@ -37,12 +37,12 @@ class Article:
         return content
     
     def generate_pdf(self):
+        pdf.add_page()
         pdf.set_font(family="Times", size=16, style="B")
-        pdf.cell(w=50, h=8, txt=f"Receipt nr.1", ln=1)
-        pdf.set_font(family="Times", size=16, style="B")
-        pdf.cell(w=50, h=8, txt=f"Article: {self.name}", ln=1)
-        pdf.set_font(family="Times", size=16, style="B")
-        pdf.cell(w=50, h=8, txt=f"Price: {self.price}€", ln=1)
+
+        pdf.cell(w=50, h=8, txt="Receipt nr.1", ln=1)
+        pdf.cell(w=50, h=8, txt=f"Article: {self.name}", ln=1)     
+        pdf.cell(w=50, h=8, txt=f"Price: {self.price}", ln=1)
         pdf.output("output/receipt.pdf")
 
 articleId = int(input("Choose the article to buy: "))
