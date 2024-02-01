@@ -39,10 +39,12 @@ class SpeedCalculator(QWidget):
         if self.measure.currentText() == "Imperial (miles)":
             miles = distance * 1.609
             result = miles * time 
+            unit = "mph"
         else:
             result = distance * time
+            unit = 'km/h'
 
-        self.output_label.setText(f"Average speed: {result}")
+        self.output_label.setText(f"Average speed: {result} {unit}")
 
 app = QApplication(sys.argv)
 speed_calculator = SpeedCalculator()
