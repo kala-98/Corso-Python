@@ -5,6 +5,17 @@ from PyQt6.QtCore import Qt
 import sys
 import sqlite3
 
+
+# creating a connection with the database
+class DatabaseConnection:
+    def __init__(self, database_file = "database.db"):
+        self.database_file = database_file
+
+    def connect(self):
+        connection = sqlite3.connect(self.database_file)
+        return connection
+
+
 class MainWindow(QMainWindow): # this module offers more flexibility
     def __init__(self):
         super().__init__()
@@ -79,7 +90,7 @@ class MainWindow(QMainWindow): # this module offers more flexibility
         dialog.exec()
 
     def load_data(self):
-        connection = sqlite3.connect("database.db")
+        connection = DatabaseConnection().connect()
         result = connection.execute("SELECT * FROM students")
         self.table.setRowCount(0)
 
@@ -134,7 +145,7 @@ class DeleteDialog(QDialog):
     
     def delete_student(self):
         id = self.student_id
-        connection = sqlite3.connect("database.db")
+        connection = DatabaseConnection().connect()
         cursor = connection.cursor()
         cursor.execute("DELETE FROM students \
                         WHERE id = ?",
@@ -199,7 +210,7 @@ class EditDialog(QDialog):
         name = self.student_name.text()
         course = self.course_name.itemText(self.course_name.currentIndex())
         mobile = self.mobile_phone.text()
-        connection = sqlite3.connect("database.db")
+        connection = DatabaseConnection().connect()
         cursor = connection.cursor()
         cursor.execute("UPDATE students \
                         SET name = ?, course = ?, phone = ? \
@@ -249,7 +260,7 @@ class InsertDialog(QDialog):
         name = self.student_name.text()
         course = self.course_name.itemText(self.course_name.currentIndex())
         mobile = self.mobile_phone.text()
-        connection = sqlite3.connect("database.db")
+        connection = DatabaseConnection().connect()
         cursor = connection.cursor()
         cursor.execute("INSERT INTO students (name, course, phone) \
                         VALUES (?, ?, ?)",
@@ -286,7 +297,7 @@ class InsertSearch(QDialog):
 
     def search_student(self):
         name = self.student_name.text()
-        connection = sqlite3.connect("database.db")
+        connection = DatabaseConnection().connect()
         cursor = connection.cursor()
         result = cursor.execute(f"SELECT * FROM students where name = ?", (name,))  
         rows = list(result)
