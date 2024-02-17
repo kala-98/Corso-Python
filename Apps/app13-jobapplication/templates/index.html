@@ -13,6 +13,7 @@
             * {
                 margin: 0;
                 padding: 0;
+                box-sizing: border-box;
             }
             body {
                 font-family: Ubuntu, Verdana;
@@ -26,41 +27,130 @@
                 width: 100px; 
                 margin-right: 10px;
                 text-align: left; 
+                text-shadow: 1px 0 white,
+                             0 -1px white,
+                             0 1px white,
+                             -1px 0 white;
             }
 
             h1 {
                 margin-top: 20px;
             }
 
-            .container {
-                margin-top: 10px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            .big-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;   
             }
-            input[type="text"] {
+
+            .container {              
+                /* display: flex;
+                align-items: center;
+                justify-content: center;     */
+                margin: 10px 0;        
+            }
+
+            .container-date {
+                margin: 0;
+            }
+            
+            input {
                 text-align: center;
                 width: 200px;
                 height: 30px;
-                border: none;
-                border: 1px solid black;
+                border: none;        
                 border-radius: 10px;
                 box-shadow: 0 0 0 1px;
+                font-size: 18px;
             }
+      
+            .container.radio {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 10px 0;
+                position: relative;
+                right: 30px;
+            }
+
+            .radio-group {
+                display: flex;
+                flex-direction: column;
+                /* align-items: flex-start; Cambia questo in base alla necessità di allineamento */
+            }
+
+            .radio-option {
+                display: flex;
+                align-items:center;
+            }
+
+            input[type="radio"] {
+                box-shadow: 0 0 0 0;
+                width: 20px;
+                position: relative;
+                right: 10px; 
+            }
+
+            input[type="button"] {
+                background-color:rgb(0, 217, 71);
+            }
+
+            input[type="button"]:hover {
+                color: #FFFFFF;
+            }
+
+            label[for="date"] {
+                position: relative;
+                top: 7px;
+            }
+
+            label[for="employment_status"] {
+                margin-right: 25px;
+            }
+            
         </style>
     </head>
     <body>  
         <form>
-            <div class = "container">
-                <h1 id="title"> Job Application Form </h1>
-            </div>
-            <div class = "container">
-                <label for = "first_name"> <b> First Name: </b></label>
-                <input type = "text" id = "first_name" name = "first_name" required>
-            </div>
-            <div class = "container">
-                <label for = "last_name"> <b> Last Name: </b></label>
-                <input type = "text" id = "last_name" name = "first_name" required>
+            <div class = "big-container">
+
+                <div class = "container">
+                    <h1 id="title"> Job Application Form </h1>
+                </div>
+                <div class = "container">
+                    <label for = "first_name"> <b> First Name: </b></label>
+                    <input type = "text" id = "first_name" name = "first_name" required>
+                </div>
+                <div class = "container">
+                    <label for = "last_name"> <b> Last Name: </b></label>
+                    <input type = "text" id = "last_name" name = "last_name" required>
+                </div>
+                <div class = "container">
+                    <label for = "email"> <b> Email: </b></label>
+                    <input type = "email" id = "email" name = "email" required>
+                </div>
+                <div class = "container-date">
+                    <label for = "date"> <b> Available start date: </b></label>
+                    <input type = "date" id = "date" name = "date" required>
+                </div>        
+                <div class = "container radio">
+                    <label for="employment_status"><b>Occupation:</b></label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="employed" name="employment_status" required>
+                            <label for="employed"><b>Employed</b></label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="unemployed" name="employment_status" required>
+                            <label for="unemployed"><b>Unemployed</b></label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="unemployed" name="employment_status" required>
+                            <label for="unemployed"><b>Unemployed</b></label>
+                        </div>
+                    </div>
+                </div>
+                <input type = "button" value = "Submit">
             </div>
        </form>
         <script src=""></script>
