@@ -95,8 +95,9 @@
                 background-color:rgb(0, 217, 71);
             }
 
-            input[type="button"]:hover {
-                color: #FFFFFF;
+            input[type="submit"]:hover {
+                color:rgb(104, 207, 0);
+                cursor: pointer;
             }
 
             label[for="date"] {
@@ -107,13 +108,23 @@
             label[for="employment_status"] {
                 margin-right: 25px;
             }
+
+            #message {
+                color: white;
+                align-self: center; 
+                padding-left: 20px;
+                text-shadow: 1px 0 black,
+                             0 -1px black,
+                             0 1px black,
+                             -1px 0 black;
+                float: left;          
+            }
             
         </style>
     </head>
     <body>  
-        <form>
+        <form method = "post">
             <div class = "big-container">
-
                 <div class = "container">
                     <h1 id="title"> Job Application Form </h1>
                 </div>
@@ -137,20 +148,31 @@
                     <label for="employment_status"><b>Occupation:</b></label>
                     <div class="radio-group">
                         <div class="radio-option">
-                            <input type="radio" id="employed" name="employment_status" required>
+                            <input type="radio" value="employed" name="employment_status" required>
                             <label for="employed"><b>Employed</b></label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="unemployed" name="employment_status" required>
+                            <input type="radio" value="unemployed" name="employment_status" required>
                             <label for="unemployed"><b>Unemployed</b></label>
                         </div>
                         <div class="radio-option">
-                            <input type="radio" id="unemployed" name="employment_status" required>
+                            <input type="radio" value="unemployed" name="employment_status" required>
                             <label for="unemployed"><b>Unemployed</b></label>
                         </div>
                     </div>
                 </div>
-                <input type = "button" value = "Submit">
+                
+                <input id = "button" type = "submit" value = "Submit">
+                <br>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}             
+                <div id = "message">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
             </div>
        </form>
         <script src=""></script>
